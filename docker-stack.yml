@@ -7,7 +7,7 @@ services:
       - "8200:8200"
     configs:
       - source: apm-server_config
-        target: /usr/share/apm-server/apm-server.docker.yml
+        target: /usr/share/apm-server/apm-server.yml
     networks:
       - elk
     deploy:
@@ -25,7 +25,7 @@ configs:
   kibana_config:
     file: ./kibana/config/kibana.yml
   apm-server_config:
-    file: ./apm-server/config/apm-server.docker.yml
+    file: ./apm-server/config/apm-server.yml
 
 networks:
   elk:

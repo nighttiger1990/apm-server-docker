@@ -8,8 +8,8 @@ services:
         ELK_VERSION: $ELK_VERSION
     volumes:
       - type: bind
-        source: ./apm-server/config/apm-server.docker.yml
-        target: /usr/share/apm-server/apm-server.docker.yml
+        source: ./apm-server/config/apm-server.yml
+        target: /usr/share/apm-server/apm-server.yml
         read_only: true
     ports:
       - "8200:8200"
