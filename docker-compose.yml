@@ -6,6 +6,7 @@ services:
       context: apm-server/
       args:
         ELK_VERSION: $ELK_VERSION
+    command: --strict.perms=false
     volumes:
       - type: bind
         source: ./apm-server/config/apm-server.yml
