@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  apm-server:
+    image: docker.elastic.co/apm/apm-server:7.6.0
+    ports:
+      - "8200:8200"
+    configs:
+      - source: apm-server_config
+        target: /usr/share/apm-server/apm-server.docker.yml
+    networks:
+      - elk
+    deploy:
+      mode: replicated
+      replicas: 1
+
+configs:
+
+  elastic_config:
+    file: ./elasticsearch/config/elasticsearch.yml
+  logstash_config:
+    file: ./logstash/config/logstash.yml
+  logstash_pipeline:
+    file: ./logstash/pipeline/logstash.conf
+  kibana_config:
+    file: ./kibana/config/kibana.yml
+  apm-server_config:
+    file: ./apm-server/config/apm-server.docker.yml
+
+networks:
+  elk:
+    external:
+      name: docker-elk_elk

@@ -1,0 +1,22 @@
+version: '3.2'
+
+services:
+  apm-server:
+    build:
+      context: apm-server/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - type: bind
+        source: ./kibana/config/apm-server.docker.yml
+        target: /usr/share/apm-server/apm-server.docker.yml
+        read_only: true
+    ports:
+      - "8200:8200"
+    networks:
+      - elk
+
+networks:
+  elk:
+    external:
+      name: docker-elk_elk
